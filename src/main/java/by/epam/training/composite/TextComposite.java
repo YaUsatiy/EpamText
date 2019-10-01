@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static by.epam.training.util.Separator.*;
+import static by.epam.training.util.Separator.PARAGRAPHS_SEPARATOR;
+import static by.epam.training.util.Separator.SPACE_SEPARATOR;
 
 public class TextComposite implements TextComponent {
     private List<TextComponent> textComponents = new ArrayList<>();
@@ -21,9 +22,8 @@ public class TextComposite implements TextComponent {
         StringBuilder stringBuilder = new StringBuilder();
         switch (componentType){
             case TEXT:
-                stringBuilder.append(TABULATION);
                 for(TextComponent textComponent : textComponents){
-                    stringBuilder.append(textComponent.write()).append(LINE_TRANSLATION);
+                    stringBuilder.append(textComponent.write()).append(PARAGRAPHS_SEPARATOR);
                 }
                 break;
             case PARAGRAPH:
@@ -33,7 +33,7 @@ public class TextComposite implements TextComponent {
                 break;
             case SENTENCE:
                 for(TextComponent textComponent : textComponents){
-                    stringBuilder.append(textComponent.write()).append(SPACE_REGEX);
+                    stringBuilder.append(textComponent.write()).append(SPACE_SEPARATOR);
                 }
                 break;
             case LEXEME:
